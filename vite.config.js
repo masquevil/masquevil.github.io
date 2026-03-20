@@ -16,7 +16,7 @@ function getBase() {
   const { VITE_TARGET_ENV } = process.env;
   switch (VITE_TARGET_ENV) {
     case 'pages':
-      return '/masquevil/';
+      return '/';
     default:
       return '/';
   }
