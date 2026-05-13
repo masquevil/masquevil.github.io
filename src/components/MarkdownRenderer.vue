@@ -43,14 +43,14 @@ const html = computed(() => parse(props.content));
 
   :deep(.md-h2) {
     color: var(--color-title);
-    margin: 20px 0;
+    margin: 36px 0 24px;
     font-size: 24px;
     font-weight: 600;
   }
 
   :deep(.md-h3) {
     color: var(--color-title);
-    margin: 12px 0;
+    margin: 24px 0 12px;
     font-size: 20px;
     font-weight: 600;
   }
@@ -113,5 +113,35 @@ const html = computed(() => parse(props.content));
   border-radius: 4px;
   font-size: 12px;
   line-height: 1;
+}
+
+.md-alert {
+  margin-bottom: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  &-default {
+    background-color: oklch(48% 0.08 270);
+    & .md-alert-title {
+      background-color: oklch(60% 0.08 270);
+    }
+  }
+
+  & .md-alert-title {
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 1.12em;
+  }
+
+  & .md-alert-content {
+    padding: 12px;
+  }
+
+  & .md-p {
+    text-indent: 1em;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 </style>

@@ -1,6 +1,8 @@
 import { Marked } from 'marked';
 import { baseUrl } from 'marked-base-url';
 import createValidityTagExtension from './validity-tag-extension';
+import createSoxClassViewExtension from './class-view-extension';
+import createAlertExtension from './alert-extension';
 
 const marked = new Marked({
   breaks: true,
@@ -13,6 +15,8 @@ marked.use(baseUrl(import.meta.env.BASE_URL));
 
 // custom extensions
 marked.use(createValidityTagExtension());
+marked.use(createSoxClassViewExtension(marked));
+marked.use(createAlertExtension(marked));
 
 // basic renderers
 marked.use({

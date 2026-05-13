@@ -15,5 +15,20 @@ declare module 'marked' {
       year: string;
       month: string;
     }
+
+    interface SoxClassView {
+      type: 'sox-class-view';
+      raw: string;
+      className: string;
+      content: string;
+    }
+
+    interface Alert {
+      type: 'alert';
+      raw: string;
+      title: string;
+      body: string;
+      variant?: string;
+    }
   }
 }

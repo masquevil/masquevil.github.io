@@ -137,6 +137,13 @@ const closeMobileMenu = () => {
   top: 0;
   left: 0;
   z-index: 1001;
+  line-height: 0;
+
+  & > .hamburger-button {
+    background-color: var(--color-bg);
+    border-radius: 0 50% 50% 50%;
+    opacity: 0.8;
+  }
 }
 
 .menu-backdrop {
@@ -297,6 +304,13 @@ const closeMobileMenu = () => {
 
   .header-container-compact.is-showing {
     left: 0;
+  }
+}
+
+// 打印样式，隐藏
+@media print {
+  .header {
+    display: none;
   }
 }
 

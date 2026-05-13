@@ -1,0 +1,22 @@
+{
+  "name": "markdown-class-view-syntax",
+  "displayName": "Markdown Class View Syntax Highlighting",
+  "description": "Syntax highlighting for class-view blocks in Markdown",
+  "version": "0.1.1",
+  "publisher": "masquevil",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "grammars": [
+      {
+        "scopeName": "markdown.class-view.injection",
+        "path": "./injection.json",
+        "injectTo": ["text.html.markdown"]
+      }
+    ]
+  }
+}
