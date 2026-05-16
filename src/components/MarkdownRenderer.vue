@@ -7,10 +7,7 @@ interface Props {
   theme?: '404';
 }
 
-interface Emits {}
-
 const props = withDefaults(defineProps<Props>(), {});
-const emit = defineEmits<Emits>();
 
 const { parse } = useMdParser();
 
@@ -25,84 +22,114 @@ const html = computed(() => parse(props.content));
   ></div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 .markdown-renderer {
   --color-title: var(--color-heading);
   --color-title-small: var(--color-text);
   --color-p: var(--color-text);
 
   color: var(--color-p);
+}
 
-  :deep(.md-h1) {
-    color: var(--color-title);
-    margin: 20px 0;
-    font-size: 36px;
-    font-weight: 600;
-    text-align: center;
+// basic styles for markdown elements
+.md-heading {
+  position: relative;
+  pointer-events: none;
+}
+.md-heading-anchor {
+  position: absolute;
+  top: calc(-12px - var(--root-header-height, 60px));
+}
+.md-h1 {
+  color: var(--color-title);
+  margin: 20px 0;
+  font-size: 36px;
+  font-weight: 600;
+  text-align: center;
+}
+.md-h2 {
+  color: var(--color-title);
+  margin: 36px 0 18px;
+  font-size: 24px;
+  font-weight: 600;
+}
+.md-h3 {
+  color: var(--color-title);
+  margin: 18px 0 12px;
+  font-size: 20px;
+  font-weight: 600;
+}
+.md-h4 {
+  color: var(--color-title-small);
+  margin: 12px 0 6px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.md-p {
+  font-size: 16px;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.md-hr {
+  margin: 24px 0;
+  border: none;
+  border-top: 1px solid var(--color-border);
+}
+
+.md-strong {
+  font-weight: 600;
+  color: var(--color-title);
+}
+
+.md-ul,
+.md-ol {
+  margin: 12px 0;
+  padding-inline-start: 24px;
+}
+
+.md-img-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 18px;
+
+  .md-img-caption {
+    letter-spacing: 0.12em;
   }
-
-  :deep(.md-h2) {
-    color: var(--color-title);
-    margin: 36px 0 24px;
-    font-size: 24px;
-    font-weight: 600;
-  }
-
-  :deep(.md-h3) {
-    color: var(--color-title);
-    margin: 24px 0 12px;
-    font-size: 20px;
-    font-weight: 600;
-  }
-
-  :deep(.md-h4) {
-    color: var(--color-title-small);
-    margin: 12px 0 6px;
-    font-size: 16px;
-    font-weight: 500;
-  }
-
-  :deep(.md-p) {
-    font-size: 16px;
-    margin-bottom: 12px;
-    line-height: 1.6;
-  }
-
-  :deep(.md-hr) {
-    margin: 24px 0;
-    border: none;
-    border-top: 1px solid var(--color-border);
-  }
-
-  :deep(.md-strong) {
-    font-weight: 600;
-    color: var(--color-title);
-  }
-
-  :deep(.md-ul),
-  :deep(.md-ol) {
-    margin: 12px 0;
-    padding-inline-start: 24px;
+  .md-img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
   }
 }
 
 .theme-404 {
   text-align: center;
 
-  :deep(.md-h1) {
+  .md-h1 {
     font-size: 120px;
     line-height: 1;
     margin-bottom: 40px;
   }
 
-  :deep(.md-p) {
+  .md-p {
     line-height: 2;
     margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .md-heading-anchor {
+    top: -12px;
   }
 }
 </style>
 
 <style lang="scss">
+// styles for custom markdown extensions
 .md-validity-tag {
   display: block;
   margin: -8px auto;
@@ -143,5 +170,15 @@ const html = computed(() => parse(props.content));
       margin-bottom: 0;
     }
   }
+}
+</style>
+
+<style lang="scss">
+// 非常不通用的一些特殊样式
+.markdown-renderer > .md-p {
+  text-indent: 1em;
+}
+.md-validity-tag {
+  text-indent: 0;
 }
 </style>

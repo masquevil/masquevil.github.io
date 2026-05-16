@@ -3,6 +3,7 @@ import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 import MarkdownRenderer from '@/components/MarkdownRenderer.vue';
+import PageAside from '@/components/PageAside.vue';
 import { getDocByName } from '@/utils';
 import doc404 from '@/docs/404.md';
 
@@ -31,15 +32,25 @@ watch(
       >
         <div class="loading-spinner">正在寻找侠小然...</div>
       </div>
-      <MarkdownRenderer
-        v-else-if="doc"
-        :content="doc"
-      />
-      <MarkdownRenderer
-        v-else
-        :content="doc404"
-        theme="404"
-      />
+
+      <div v-else>
+        <MarkdownRenderer
+          v-if="doc"
+          :content="doc"
+        />
+        <MarkdownRenderer
+          v-else
+          :content="doc404"
+          theme="404"
+        />
+      </div>
+    </div>
+
+    <div
+      v-if="doc"
+      class="aside-wrapper"
+    >
+      <PageAside :content="doc" />
     </div>
   </main>
 </template>

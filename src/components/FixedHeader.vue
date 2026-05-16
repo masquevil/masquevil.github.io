@@ -143,6 +143,7 @@ const closeMobileMenu = () => {
     background-color: var(--color-bg);
     border-radius: 0 50% 50% 50%;
     opacity: 0.8;
+    backdrop-filter: blur(10px);
   }
 }
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import MarkdownRenderer from '@/components/MarkdownRenderer.vue';
+import PageAside from '@/components/PageAside.vue';
 import docBasic from '@/docs/basic.md';
 </script>
 
@@ -8,6 +9,8 @@ import docBasic from '@/docs/basic.md';
     <div class="container">
       <MarkdownRenderer :content="docBasic" />
     </div>
+
+    <PageAside :content="docBasic" />
   </main>
 </template>
 

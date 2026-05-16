@@ -7,7 +7,7 @@ interface Emits {
   (e: 'toggle'): void;
 }
 
-const props = defineProps<Props>();
+defineProps<Props>();
 const emit = defineEmits<Emits>();
 
 const handleClick = () => {
