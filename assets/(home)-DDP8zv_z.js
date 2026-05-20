@@ -29,4 +29,4 @@ import{k as e,m as t,p as n,s as r,t as i,u as a,y as o}from"./_plugin-vue_expor
 ## 叠加态终结者
 
 （未来的可能性，比如编曲等）
-`,u={class:`page`},d={class:`container`},f=i(t({__name:`index`,setup(t){return(t,i)=>(o(),a(`main`,u,[r(`div`,d,[n(s,{content:e(l)},null,8,[`content`])]),n(c,{content:e(l)},null,8,[`content`])]))}}),[[`__scopeId`,`data-v-f6fa0f5f`]]);export{f as default};
+`,u={class:`page`},d={class:`container`},f=i(t({__name:`index`,setup(t){return(t,i)=>(o(),a(`main`,u,[r(`div`,d,[n(s,{content:e(l)},null,8,[`content`])]),n(c,{content:e(l)},null,8,[`content`])]))}}),[[`__scopeId`,`data-v-f9c2e4b6`]]);export{f as default};
