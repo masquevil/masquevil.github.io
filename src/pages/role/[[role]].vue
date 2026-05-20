@@ -59,7 +59,7 @@ watch(
 .container {
   max-width: 600px;
   margin: 0 auto;
-  padding: 36px;
+  padding: 36px 34px 60px;
 }
 
 .loading {

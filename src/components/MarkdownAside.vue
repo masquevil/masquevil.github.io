@@ -14,9 +14,14 @@ interface HeadingTreeItem extends HeadingItem {
 
 const props = defineProps<{ content: string }>();
 
+const isMobile = ref(false);
+const isExpanded = ref(false);
+const currentHeadingId = ref<string>('');
+const currentHeadingText = ref<string>('');
+const currentH2Id = ref<string>('');
+
 const { extractHeadings } = useMdParser();
 const headings = computed<HeadingItem[]>(() => extractHeadings(props.content));
-
 const headingTree = computed<HeadingTreeItem[]>(() => {
   let currentH2Id = '';
   return headings.value.map((heading) => {
@@ -29,18 +34,16 @@ const headingTree = computed<HeadingTreeItem[]>(() => {
     };
   });
 });
-
-const isMobile = ref(false);
-const isExpanded = ref(false);
-const currentHeadingId = ref<string>('');
-const currentHeadingText = ref<string>('');
-const currentH2Id = ref<string>('');
-
 const visibleDesktopHeadings = computed<HeadingTreeItem[]>(() => {
   return headingTree.value.filter((heading) => {
     if (heading.depth <= 2) return true;
     return heading.depth === 3 && heading.parentId === currentH2Id.value;
   });
+});
+
+const mobileButtonHeadingText = computed(() => {
+  const text = currentHeadingText.value;
+  return text ? `正在浏览：${text}` : '';
 });
 
 const handleResize = () => {
@@ -122,12 +125,12 @@ onMounted(() => {
       v-if="!isMobile"
       class="aside-desktop"
     >
-      <div class="aside-title">目录</div>
-      <ul class="aside-list">
+      <div class="menu-title">目录</div>
+      <ul class="aside-menu">
         <li
           v-for="heading in visibleDesktopHeadings"
           :key="heading.id"
-          :class="['aside-list-item', `aside-list-item--level-${heading.depth}`]"
+          :class="['menu-item', `menu-item--level-${heading.depth}`]"
         >
           <a
             class="aside-link"
@@ -145,19 +148,27 @@ onMounted(() => {
       class="aside-mobile"
     >
       <button
-        class="aside-mobile-trigger"
+        class="mobile-trigger"
         @click="toggleExpanded"
       >
-        {{ isExpanded ? '关闭' : currentHeadingText || '目录' }}
+        <span class="mobile-trigger-label">
+          {{ isExpanded ? '关闭' : '目录' }}
+        </span>
+        <span
+          v-if="!isExpanded && mobileButtonHeadingText"
+          class="mobile-trigger-text"
+        >
+          {{ mobileButtonHeadingText }}
+        </span>
       </button>
 
-      <div class="aside-mobile-menu">
-        <div class="aside-title">目录</div>
-        <ul class="aside-list">
+      <div class="aside-mobile-menu-container">
+        <div class="menu-title">目录</div>
+        <ul class="aside-menu">
           <li
             v-for="heading in headings"
             :key="heading.id"
-            :class="['aside-list-item', `aside-list-item--level-${heading.depth}`]"
+            :class="['menu-item', `menu-item--level-${heading.depth}`]"
           >
             <a
               class="aside-link"
@@ -185,7 +196,7 @@ onMounted(() => {
   }
 }
 
-.aside-title {
+.menu-title {
   margin-bottom: 4px;
   color: var(--color-text);
   font-size: 12px;
@@ -193,13 +204,13 @@ onMounted(() => {
   text-transform: uppercase;
 }
 
-.aside-list {
+.aside-menu {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.aside-list-item--level-2 {
+.menu-item--level-2 {
   margin-top: 8px;
 }
 
@@ -215,11 +226,11 @@ onMounted(() => {
     color: var(--color-heading);
   }
 
-  .aside-list-item--level-2 & {
+  .menu-item--level-2 & {
     color: oklch(80% 0.04 290);
   }
 
-  .aside-list-item--level-3 & {
+  .menu-item--level-3 & {
     padding-left: 8px;
   }
 }
@@ -228,10 +239,11 @@ onMounted(() => {
   font-weight: 600;
 }
 
-.aside-mobile-trigger {
-  display: block;
+.mobile-trigger {
   width: 100%;
   padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
   background: var(--color-surface);
   color: var(--color-text);
   font-size: 14px;
@@ -239,8 +251,11 @@ onMounted(() => {
   text-align: left;
   cursor: pointer;
 }
+.mobile-trigger-text {
+  color: oklch(80% 0.04 290);
+}
 
-.aside-mobile-menu {
+.aside-mobile-menu-container {
   display: none;
   max-height: 50vh;
   overflow-y: auto;
@@ -248,7 +263,7 @@ onMounted(() => {
   padding: 16px 24px;
 }
 
-.is-mobile.is-mobile-expanded .aside-mobile-menu {
+.is-mobile.is-mobile-expanded .aside-mobile-menu-container {
   display: block;
 }
 </style>
