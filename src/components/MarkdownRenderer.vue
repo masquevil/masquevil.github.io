@@ -34,11 +34,7 @@ const html = computed(() => parse(props.content));
 // basic styles for markdown elements
 .md-heading {
   position: relative;
-  pointer-events: none;
-}
-.md-heading-anchor {
-  position: absolute;
-  top: calc(-12px - var(--root-header-height, 60px));
+  scroll-margin-top: calc(var(--root-header-height, 60px) + 12px);
 }
 .md-h1 {
   color: var(--color-title);
@@ -122,8 +118,9 @@ const html = computed(() => parse(props.content));
 }
 
 @media (max-width: 1040px) {
-  .md-heading-anchor {
-    top: -12px;
+  .md-heading {
+    position: relative;
+    scroll-margin-top: 12px;
   }
 }
 </style>

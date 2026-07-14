@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue';
 import useMdParser from '@/hooks/useMdParser';
+import animateScrollTo from 'animated-scroll-to';
 
 interface HeadingItem {
   depth: number;
@@ -19,6 +20,11 @@ const isExpanded = ref(false);
 const currentHeadingId = ref<string>('');
 const currentHeadingText = ref<string>('');
 const currentH2Id = ref<string>('');
+
+function getScrollMarginTop(element: HTMLElement): number {
+  const scrollMarginTop = getComputedStyle(element).getPropertyValue('scroll-margin-top');
+  return scrollMarginTop.endsWith('px') ? parseInt(scrollMarginTop) : 0;
+}
 
 const { extractHeadings } = useMdParser();
 const headings = computed<HeadingItem[]>(() => extractHeadings(props.content));
@@ -54,6 +60,25 @@ const toggleExpanded = () => {
   isExpanded.value = !isExpanded.value;
 };
 
+const scrollToHeading = (headingId: string) => {
+  const headingAnchor = document.getElementById(headingId);
+  if (!headingAnchor) return;
+  // headingAnchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  animateScrollTo(headingAnchor, {
+    verticalOffset: -getScrollMarginTop(headingAnchor),
+    maxDuration: 600,
+  });
+};
+
+const handleHeadingClick = (event: MouseEvent, headingId: string) => {
+  event.preventDefault();
+  scrollToHeading(headingId);
+
+  if (isMobile.value) {
+    isExpanded.value = false;
+  }
+};
+
 const updateCurrentHeading = () => {
   if (!headings.value.length) {
     currentHeadingId.value = '';
@@ -62,18 +87,14 @@ const updateCurrentHeading = () => {
     return;
   }
 
-  const headerHeight =
-    parseFloat(
-      getComputedStyle(document.documentElement).getPropertyValue('--root-header-height'),
-    ) || 60;
-  const scrollY = window.scrollY + (isMobile.value ? 0 : headerHeight) + 20;
-
   let activeHeadingIndex = -1;
 
   for (let i = headings.value.length - 1; i >= 0; i--) {
-    const headingAnchor = document.getElementById(headings.value[i].id);
-    const heading = headingAnchor && headingAnchor.parentElement;
-    if (heading && heading.offsetTop <= scrollY) {
+    const heading = document.getElementById(headings.value[i].id);
+    if (!heading) continue;
+    const headingTop = heading.offsetTop - getScrollMarginTop(heading);
+    const scrollTop = Math.ceil(window.scrollY);
+    if (headingTop <= scrollTop) {
       activeHeadingIndex = i;
       break;
     }
@@ -136,8 +157,10 @@ onMounted(() => {
             class="aside-link"
             :class="{ 'aside-link--active': currentHeadingId === heading.id }"
             :href="`#${heading.id}`"
-            >{{ heading.text }}</a
+            @click="(event) => handleHeadingClick(event, heading.id)"
           >
+            {{ heading.text }}
+          </a>
         </li>
       </ul>
     </div>
@@ -173,8 +196,10 @@ onMounted(() => {
             <a
               class="aside-link"
               :href="`#${heading.id}`"
-              >{{ heading.text }}</a
+              @click="(event) => handleHeadingClick(event, heading.id)"
             >
+              {{ heading.text }}
+            </a>
           </li>
         </ul>
       </div>

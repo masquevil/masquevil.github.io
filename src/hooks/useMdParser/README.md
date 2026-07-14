@@ -45,7 +45,7 @@ Markdown 内容
 ### 示例
 
 ```markdown
-~~~class-view:sox-chart-view
+~~~class-view:sox-info-view
 **标题**：内容
 **标题**：内容
 ~~~
@@ -54,7 +54,7 @@ Markdown 内容
 渲染为：
 
 ```html
-<div class="sox-chart-view">
+<div class="sox-info-view">
   <p class="md-p"><strong class="md-strong">标题</strong>：内容</p>
   <p class="md-p"><strong class="md-strong">标题</strong>：内容</p>
 </div>
