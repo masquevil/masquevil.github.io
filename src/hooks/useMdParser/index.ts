@@ -26,7 +26,8 @@ marked.use({
       const text = this.parser.parseInline(tokens);
       return (
         `<h${depth} id="${createHeadingId(text)}" class="md-heading md-h${depth}">` +
-        `${text}</h${depth}>`
+        `<span class="md-heading-text">` +
+        `${text}</span></h${depth}>`
       );
     },
     paragraph({ tokens }) {

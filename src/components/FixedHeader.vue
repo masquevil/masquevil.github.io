@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import HamburgerButton from './HamburgerButton.vue';
 
 const isMobileMenuOpen = ref(false);
 
 // Tab 数据结构
-const tabs = [
+const TABS = [
   {
     name: '你的朋友',
     children: ['大龄二次元', '居家调酒师'],
@@ -15,6 +15,49 @@ const tabs = [
     children: ['前端工程师', '江浙沪地陪'],
   },
 ];
+const TABS_FOR_DEV = [
+  {
+    name: '内部文档',
+    children: [
+      {
+        name: '大二投稿',
+        path: 'daer',
+      },
+    ],
+  },
+];
+
+interface TabsInfo {
+  name: string;
+  children: {
+    name: string;
+    path: string;
+  }[];
+}
+const tabsInfo = computed(() => {
+  const tabsInfo: TabsInfo[] = [];
+  TABS.forEach((tab) => {
+    tabsInfo.push({
+      name: tab.name,
+      children: tab.children.map((child) => ({
+        name: child,
+        path: `/role/${child}`,
+      })),
+    });
+  });
+  if (import.meta.env.DEV) {
+    TABS_FOR_DEV.forEach((tab) => {
+      tabsInfo.push({
+        name: tab.name,
+        children: tab.children.map((child) => ({
+          name: child.name,
+          path: `/_dev/${child.path}`,
+        })),
+      });
+    });
+  }
+  return tabsInfo;
+});
 
 // 当前 hover 的 tab 索引（桌面端）
 const hoveredTabIndex = ref<number | null>(null);
@@ -43,7 +86,7 @@ const closeMobileMenu = () => {
 
         <nav class="menu-desktop">
           <div
-            v-for="(tab, index) in tabs"
+            v-for="(tab, index) in tabsInfo"
             :key="tab.name"
             class="menu-item"
             @mouseenter="hoveredTabIndex = index"
@@ -57,12 +100,12 @@ const closeMobileMenu = () => {
               >
                 <router-link
                   v-for="child in tab.children"
-                  :key="child"
-                  :to="`/role/${child}`"
+                  :key="child.name"
+                  :to="child.path"
                   class="menu-desktop-dropdown-item"
                   @click="hoveredTabIndex = null"
                 >
-                  {{ child }}
+                  {{ child.name }}
                 </router-link>
               </div>
             </transition>
@@ -99,19 +142,19 @@ const closeMobileMenu = () => {
         <!-- 移动端 Tab List（纵向平铺） -->
         <nav class="menu-mobile">
           <div
-            v-for="tab in tabs"
+            v-for="tab in tabsInfo"
             :key="tab.name"
             class="menu-mobile-section"
           >
             <div class="menu-mobile-section-title">{{ tab.name }}</div>
             <router-link
               v-for="child in tab.children"
-              :key="child"
-              :to="`/role/${child}`"
+              :key="child.name"
+              :to="child.path"
               class="menu-mobile-section-item"
               @click="closeMobileMenu"
             >
-              {{ child }}
+              {{ child.name }}
             </router-link>
           </div>
         </nav>

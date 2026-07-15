@@ -40,6 +40,13 @@ declare module 'vue-router/auto-routes' {
       { path: ParamValue<false> },
       | never
     >,
+    '/_dev/daer': RouteRecordInfo<
+      '/_dev/daer',
+      '/_dev/daer',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     '/role/[[role]]': RouteRecordInfo<
       '/role/[[role]]',
       '/role/:role?',
@@ -69,6 +76,12 @@ declare module 'vue-router/auto-routes' {
     'src/pages/(home)/[...path].vue': {
       routes:
         | '/(home)/[...path]'
+      views:
+        | never
+    }
+    'src/pages/_dev/daer.vue': {
+      routes:
+        | '/_dev/daer'
       views:
         | never
     }

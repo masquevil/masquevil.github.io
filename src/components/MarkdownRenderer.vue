@@ -29,6 +29,7 @@ const html = computed(() => parse(props.content));
   --color-p: var(--color-text);
 
   color: var(--color-p);
+  text-align: justify;
 }
 
 // basic styles for markdown elements
@@ -37,29 +38,37 @@ const html = computed(() => parse(props.content));
   scroll-margin-top: calc(var(--root-header-height, 60px) + 12px);
 }
 .md-h1 {
-  color: var(--color-title);
   margin: 20px 0;
-  font-size: 36px;
-  font-weight: 600;
-  text-align: center;
+  .md-heading-text {
+    color: var(--color-title);
+    font-size: 36px;
+    text-align: center;
+    font-weight: 600;
+  }
 }
 .md-h2 {
-  color: var(--color-title);
   margin: 36px 0 18px;
-  font-size: 24px;
-  font-weight: 600;
+  .md-heading-text {
+    color: var(--color-title);
+    font-size: 24px;
+    font-weight: 600;
+  }
 }
 .md-h3 {
-  color: var(--color-title);
   margin: 18px 0 12px;
-  font-size: 20px;
-  font-weight: 600;
+  .md-heading-text {
+    color: var(--color-title);
+    font-size: 20px;
+    font-weight: 600;
+  }
 }
 .md-h4 {
-  color: var(--color-title-small);
   margin: 12px 0 6px;
-  font-size: 16px;
-  font-weight: 500;
+  .md-heading-text {
+    color: var(--color-title-small);
+    font-size: 16px;
+    font-weight: 500;
+  }
 }
 
 .md-p {
@@ -119,7 +128,6 @@ const html = computed(() => parse(props.content));
 
 @media (max-width: 1040px) {
   .md-heading {
-    position: relative;
     scroll-margin-top: 12px;
   }
 }

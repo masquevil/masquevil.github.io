@@ -66,7 +66,7 @@ const scrollToHeading = (headingId: string) => {
   // headingAnchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
   animateScrollTo(headingAnchor, {
     verticalOffset: -getScrollMarginTop(headingAnchor),
-    maxDuration: 600,
+    maxDuration: 800,
   });
 };
 
