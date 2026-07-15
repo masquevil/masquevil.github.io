@@ -1,37 +1,29 @@
-var e=`# 大龄二次元·侠小然
+import{A as e,C as t,c as n,d as r,h as i,m as a,t as o,x as s}from"./_plugin-vue_export-helper-BnkWu3ar.js";import{r as c}from"./index-DT_vs9x3.js";import{t as l}from"./MarkdownRenderer-lvXaiqmY.js";import{t as u}from"./PageAside-B7qnBRw0.js";var d={id:`data-image-source`,class:`data-image-source`},f=o(i({__name:`DataImageSource`,props:{urlRefs:{}},setup(e){let i=e;return s(()=>{let e=document.getElementById(`svg-heartbeat`);e&&(i.urlRefs[`svg-heartbeat`]=`url("data:image/svg+xml;charset=utf-8,${encodeURIComponent(e.outerHTML)}")`)}),(e,i)=>(t(),r(`div`,d,[...i[0]||=[n(`svg`,{id:`svg-heartbeat`,xmlns:`http://www.w3.org/2000/svg`,viewBox:`0 0 300 300`},[n(`path`,{d:`
+          M0 100
+          L120 100
+
+          L130 80
+          L140 120
+          L150 100
+
+          L210 100
+          L220 80
+          L230 160
+          L250 40
+          L260 120
+          L270 100
+
+          L300 100
+        `,fill:`none`,stroke:`#9286ab`,"stroke-width":`4`,"stroke-linejoin":`round`,"stroke-linecap":`round`}),n(`path`,{d:`
+          M270 215
+          C270 200 250 195 245 210
+          C240 195 220 200 220 215
+          C220 230 235 240 245 250
+          C255 240 270 230 270 215
+          Z
+        `,fill:`none`,stroke:`#9286ab`,"stroke-width":`4`,"stroke-linejoin":`round`,"stroke-linecap":`round`})],-1)]]))}}),[[`__scopeId`,`data-v-d97889cd`]]),p=`# 大龄二次元·侠小然
 
 !:2026:7:!
-
-<style>
-.sox-form-view > table {
-  width: 100%;
-  margin: 12px 0;
-  td {
-    padding: 0.4em 0.8em;
-    border: 1px solid #ddd;
-    line-height: 1.4;
-  }
-  td:first-child {
-    white-space: nowrap;
-    vertical-align: text-top;
-  }
-}
-</style>
-
-## 致路过的冒险者
-
-如果诸位旅途中恰好遇见符合描述的目标，还请帮忙转交这份委托。
-
-愿各位冒险者：抽卡不歪，联机不鸽；所念皆至，所爱相逢。
-
-本次委托的奖励（转发抽奖）：
-
-~~~class-view:sox-form-view
-| | |
-| - | - |
-| 1个 | 全国任意城市经济舱往返机票，可折现 1000 元 |
-| 3个 | 648 元 |
-~~~
 
 ## 基本信息
 
@@ -143,8 +135,6 @@ var e=`# 大龄二次元·侠小然
 
 ![环太湖路线](/assets/image/daer/4.3.02.jpg "就是这次环太湖自驾")
 
-## 关于我的一些补充
-
 ### 叠加态终结者
 
 兴趣爱好挺多的，一直有很多想尝试的事儿，逐渐都会试一下，观察一下会坍缩成爱好还是弃坑。
@@ -180,4 +170,32 @@ var e=`# 大龄二次元·侠小然
 希望你在联系我的时候，可以告诉我你想跟我一起做的事情是什么~
 
 v: masquevil
-`;export{e as default};
+`,m=`<style>
+.sox-form-view > table {
+  width: 100%;
+  margin: 12px 0;
+  td {
+    padding: 0.4em 0.8em;
+    border: 1px solid var(--color-border);
+    line-height: 1.28;
+  }
+  td:first-child {
+    white-space: nowrap;
+    vertical-align: text-top;
+  }
+}
+</style>
+
+## 转发抽奖
+
+如果诸位身边恰好有符合描述的目标，还请帮忙转发给她。愿各位：单抽限定，排位连胜；所念皆至，所爱相逢。
+
+奖品内容：
+
+~~~class-view:sox-form-view
+| | |
+| - | - |
+| 1个 | 全国任意城市经济舱往返机票，可折现 1000 元 |
+| 3个 | 648 元 |
+~~~
+`,h={class:`page`},g={class:`container`},_={class:`aside-wrapper`},v=o(i({__name:`daer`,setup(i){c(e=>({v5047f980:s[`svg-heartbeat`]}));let o=p+m,s=e({});return(e,i)=>(t(),r(`main`,h,[n(`div`,g,[a(l,{content:o}),a(f,{urlRefs:s},null,8,[`urlRefs`])]),n(`div`,_,[a(u,{content:o})])]))}}),[[`__scopeId`,`data-v-4256c14c`]]);export{v as default};
