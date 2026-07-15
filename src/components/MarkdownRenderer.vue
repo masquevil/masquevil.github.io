@@ -39,10 +39,10 @@ const html = computed(() => parse(props.content));
 }
 .md-h1 {
   margin: 20px 0;
+  text-align: center;
   .md-heading-text {
     color: var(--color-title);
     font-size: 36px;
-    text-align: center;
     font-weight: 600;
   }
 }

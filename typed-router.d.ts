@@ -40,6 +40,13 @@ declare module 'vue-router/auto-routes' {
       { path: ParamValue<false> },
       | never
     >,
+    '/_dev/[name]': RouteRecordInfo<
+      '/_dev/[name]',
+      '/_dev/:name',
+      { name: ParamValue<true> },
+      { name: ParamValue<false> },
+      | never
+    >,
     '/_dev/daer': RouteRecordInfo<
       '/_dev/daer',
       '/_dev/daer',
@@ -76,6 +83,12 @@ declare module 'vue-router/auto-routes' {
     'src/pages/(home)/[...path].vue': {
       routes:
         | '/(home)/[...path]'
+      views:
+        | never
+    }
+    'src/pages/_dev/[name].vue': {
+      routes:
+        | '/_dev/[name]'
       views:
         | never
     }

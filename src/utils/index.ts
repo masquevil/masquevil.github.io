@@ -21,3 +21,26 @@ export async function getDocByName(name: string) {
   const docs = getDocs();
   return (await docs.find((doc) => doc.name === name)?.content()) || null;
 }
+
+export function getDevDocs() {
+  // 动态导入所有 docs 目录下的 .md 文件
+  const docs = import.meta.glob<false, 'raw', string>('@/docs/_dev/*.md', {
+    query: '?raw',
+    import: 'default',
+    eager: false,
+  });
+
+  // 从文件路径中提取模块名称
+  return Object.entries(docs).map(([filePath, fileContent]) => {
+    const docName = filePath.split('/').slice(-1)[0].slice(0, -3);
+    return {
+      name: docName,
+      content: fileContent,
+    };
+  });
+}
+
+export async function getDevDocByName(name: string) {
+  const docs = getDevDocs();
+  return (await docs.find((doc) => doc.name === name)?.content()) || null;
+}
