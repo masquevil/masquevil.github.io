@@ -111,7 +111,7 @@ const html = computed(() => parse(props.content));
   }
 }
 
-.theme-404 {
+.markdown-renderer.theme-404 {
   text-align: center;
 
   .md-h1 {
@@ -120,9 +120,10 @@ const html = computed(() => parse(props.content));
     margin-bottom: 40px;
   }
 
-  .md-p {
+  & > .md-p {
     line-height: 2;
     margin-bottom: 24px;
+    text-indent: 0;
   }
 }
 
