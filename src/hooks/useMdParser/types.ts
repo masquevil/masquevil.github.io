@@ -16,8 +16,8 @@ declare module 'marked' {
       month: string;
     }
 
-    interface SoxClassView {
-      type: 'sox-class-view';
+    interface ClassView {
+      type: 'class-view';
       raw: string;
       className: string;
       content: string;
@@ -29,6 +29,12 @@ declare module 'marked' {
       title: string;
       body: string;
       variant?: string;
+    }
+
+    interface Meta {
+      type: 'meta';
+      raw: string;
+      data: Record<string, string>;
     }
   }
 }

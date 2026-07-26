@@ -63,7 +63,6 @@ const toggleExpanded = () => {
 const scrollToHeading = (headingId: string) => {
   const headingAnchor = document.getElementById(headingId);
   if (!headingAnchor) return;
-  // headingAnchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
   animateScrollTo(headingAnchor, {
     verticalOffset: -getScrollMarginTop(headingAnchor),
     maxDuration: 800,
@@ -246,13 +245,12 @@ onMounted(() => {
   line-height: 1.6;
   color: var(--color-text);
 
-  &:hover,
-  &:focus {
-    color: var(--color-heading);
+  &:hover {
+    color: var(--color-primary);
   }
 
   .menu-item--level-2 & {
-    color: oklch(80% 0.04 290);
+    color: var(--color-aside-text);
   }
 
   .menu-item--level-3 & {
@@ -260,7 +258,7 @@ onMounted(() => {
   }
 }
 .aside-link--active {
-  color: var(--color-primary);
+  color: var(--color-heading);
   font-weight: 600;
 }
 
@@ -269,7 +267,7 @@ onMounted(() => {
   padding: 12px 24px;
   display: flex;
   justify-content: space-between;
-  background: var(--color-surface);
+  background: var(--color-aside-bg);
   color: var(--color-text);
   font-size: 14px;
   font-weight: 500;
@@ -277,7 +275,7 @@ onMounted(() => {
   cursor: pointer;
 }
 .mobile-trigger-text {
-  color: oklch(80% 0.04 290);
+  color: var(--color-aside-text);
 }
 
 .aside-mobile-menu-container {

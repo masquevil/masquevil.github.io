@@ -1,7 +1,7 @@
 import type { Marked, RendererThis, Tokens } from 'marked';
 import './types';
 
-export default function createSoxClassViewExtension(marked: Marked) {
+export default function createClassViewExtension(marked: Marked) {
   return {
     extensions: [
       {
@@ -25,7 +25,7 @@ export default function createSoxClassViewExtension(marked: Marked) {
             };
           }
         },
-        renderer(this: RendererThis, token: Tokens.SoxClassView) {
+        renderer(this: RendererThis, token: Tokens.ClassView) {
           const { className, content } = token;
           const parsedContent = marked.parse(content) as string;
           return `<div class="${className}">${parsedContent}</div>`;

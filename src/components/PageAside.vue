@@ -29,7 +29,7 @@ defineProps<{ content: string }>();
     width: 100%;
     max-width: none;
     bottom: 0;
-    background-color: rgba(22, 22, 22, 0.88);
+    background-color: var(--color-aside-bg);
     backdrop-filter: blur(10px);
   }
 }

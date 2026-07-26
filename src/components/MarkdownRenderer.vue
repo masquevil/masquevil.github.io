@@ -1,23 +1,43 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import useMdParser from '../hooks/useMdParser';
 
 interface Props {
   content: string;
-  theme?: '404';
+  theme?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {});
+const props = withDefaults(defineProps<Props>(), { theme: 'article' });
+const router = useRouter();
+const container = ref<HTMLElement | null>(null);
 
 const { parse } = useMdParser();
 
 const html = computed(() => parse(props.content));
+
+onMounted(() => {
+  container.value?.addEventListener('click', (e: MouseEvent) => {
+    const target = (e.target as HTMLElement).closest('a');
+    if (!target) return;
+
+    if (target.hasAttribute('data-router-link')) {
+      e.preventDefault();
+      const href = target.getAttribute('href');
+      if (href) {
+        router.push(href);
+      }
+    }
+    // target="_blank" links are handled natively by the browser
+  });
+});
 </script>
 
 <template>
   <div
+    ref="container"
     class="markdown-renderer"
-    :class="{ 'theme-404': props.theme === '404' }"
+    :class="`theme-${props.theme}`"
     v-html="html"
   ></div>
 </template>
@@ -92,6 +112,11 @@ const html = computed(() => parse(props.content));
 .md-ol {
   margin: 12px 0;
   padding-inline-start: 24px;
+
+  & .md-ul,
+  & .md-ol {
+    margin: 4px 0 8px;
+  }
 }
 
 .md-img-container {
@@ -111,6 +136,49 @@ const html = computed(() => parse(props.content));
   }
 }
 
+.md-pre {
+  margin: 12px 0;
+  padding: 12px;
+  border-radius: 8px;
+  // background-color: var(--color-muted-dark-5);
+  overflow-x: auto;
+}
+
+// tables
+.md-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.md-thead {
+  // background-color: var(--color-muted-dark-5);
+  background-color: transparent;
+}
+.md-th {
+  padding: 6px 8px;
+  font-weight: 600;
+  color: var(--color-title);
+  border-bottom: 2px solid var(--color-border, #ddd);
+  white-space: nowrap;
+}
+.md-td {
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--color-border, #ddd);
+}
+.md-tbody .md-tr {
+  &:hover {
+    background-color: var(--color-muted-dark-3);
+  }
+}
+
+.markdown-renderer.theme-article {
+  & > .md-p {
+    text-indent: 1em;
+  }
+}
+
 .markdown-renderer.theme-404 {
   text-align: center;
 
@@ -123,7 +191,6 @@ const html = computed(() => parse(props.content));
   & > .md-p {
     line-height: 2;
     margin-bottom: 24px;
-    text-indent: 0;
   }
 }
 
@@ -141,11 +208,12 @@ const html = computed(() => parse(props.content));
   margin: -8px auto;
   padding: 4px 12px;
   width: fit-content;
-  color: #9286ab;
+  color: var(--color-md-validity-tag);
   border: 1px solid currentColor;
   border-radius: 4px;
   font-size: 12px;
   line-height: 1;
+  text-indent: 0;
 }
 
 .md-alert {
@@ -154,9 +222,9 @@ const html = computed(() => parse(props.content));
   overflow: hidden;
 
   &-default {
-    background-color: oklch(48% 0.08 270);
+    background-color: var(--color-md-alert-bg);
     & .md-alert-title {
-      background-color: oklch(60% 0.08 270);
+      background-color: var(--color-md-alert-title-bg);
     }
   }
 
@@ -176,15 +244,5 @@ const html = computed(() => parse(props.content));
       margin-bottom: 0;
     }
   }
-}
-</style>
-
-<style lang="scss">
-// 非常不通用的一些特殊样式
-.markdown-renderer > .md-p {
-  text-indent: 1em;
-}
-.md-validity-tag {
-  text-indent: 0;
 }
 </style>
