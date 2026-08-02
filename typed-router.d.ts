@@ -14,10 +14,15 @@ import type {
   ParamValueZeroOrMore,
   ParamValueZeroOrOne,
 } from 'vue-router'
+import type {
+  _ExtractParamParserType,
+} from 'vue-router/experimental'
 
 declare module 'vue-router' {
   interface TypesConfig {
-    ParamParsers: never
+    _ParamParsers: {}
+    RouteNamedMap: import('vue-router/auto-routes').RouteNamedMap
+    _RouteFileInfoMap: import('vue-router/auto-routes')._RouteFileInfoMap
   }
 }
 
@@ -79,23 +84,31 @@ declare module 'vue-router/auto-routes' {
         | '/(home)/'
       views:
         | never
+      pathParamNames:
+        | never
     }
     'src/pages/(home)/[...path].vue': {
       routes:
         | '/(home)/[...path]'
       views:
         | never
+      pathParamNames:
+        | 'path'
     }
     'src/pages/_dev/[name].vue': {
       routes:
         | '/_dev/[name]'
       views:
         | never
+      pathParamNames:
+        | 'name'
     }
     'src/pages/_dev/daer.vue': {
       routes:
         | '/_dev/daer'
       views:
+        | never
+      pathParamNames:
         | never
     }
     'src/pages/role/[[role]].vue': {
@@ -103,6 +116,8 @@ declare module 'vue-router/auto-routes' {
         | '/role/[[role]]'
       views:
         | never
+      pathParamNames:
+        | 'role'
     }
   }
 
