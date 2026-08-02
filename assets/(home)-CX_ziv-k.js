@@ -1,4 +1,4 @@
-import{D as e,F as t,_ as n,b as r,m as i,t as a,x as o}from"./_plugin-vue_export-helper-DvTVNb-r.js";import{t as s}from"./MarkdownRenderer-D1Nst83B.js";import{t as c}from"./PageAside-Dh6mfLEF.js";var l=`# 侠小然的奇怪人生档案
+import{D as e,F as t,_ as n,b as r,m as i,t as a,x as o}from"./_plugin-vue_export-helper-DvTVNb-r.js";import{t as s}from"./MarkdownRenderer-BJjQwrvT.js";import{t as c}from"./PageAside-CoRVi9Pw.js";var l=`# 侠小然的奇怪人生档案
 
 ## 退役程序员
 
