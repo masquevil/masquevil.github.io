@@ -1,4 +1,4 @@
-import{D as e,N as t,T as n,_ as r,b as i,m as a,t as o,x as s}from"./_plugin-vue_export-helper-DvTVNb-r.js";import{r as c}from"./index-DU6YRbln.js";import{t as l}from"./MarkdownRenderer-BJjQwrvT.js";import{t as u}from"./PageAside-CoRVi9Pw.js";var d={id:`data-image-source`,class:`data-image-source`},f=o(s({__name:`DataImageSource`,props:{urlRefs:{}},setup(t){let i=t;return n(()=>{let e=document.getElementById(`svg-heartbeat`);e&&(i.urlRefs[`svg-heartbeat`]=`url("data:image/svg+xml;charset=utf-8,${encodeURIComponent(e.outerHTML)}")`)}),(t,n)=>(e(),r(`div`,d,[...n[0]||=[a(`svg`,{id:`svg-heartbeat`,xmlns:`http://www.w3.org/2000/svg`,viewBox:`0 0 300 300`},[a(`path`,{d:`
+import{f as e,g as t,h as n,l as r,m as i,o as a,p as o,r as s,y as c}from"./index-JGxqskeW.js";import{t as l}from"./MarkdownRenderer-DkD6Dn8Q.js";import{t as u}from"./PageAside-eypJcU0o.js";var d={id:`data-image-source`,class:`data-image-source`},f=s(i({__name:`DataImageSource`,props:{urlRefs:{}},setup(i){let a=i;return n(()=>{let e=document.getElementById(`svg-heartbeat`);e&&(a.urlRefs[`svg-heartbeat`]=`url("data:image/svg+xml;charset=utf-8,${encodeURIComponent(e.outerHTML)}")`)}),(n,i)=>(t(),e(`div`,d,[...i[0]||=[r(`svg`,{id:`svg-heartbeat`,xmlns:`http://www.w3.org/2000/svg`,viewBox:`0 0 300 300`},[r(`path`,{d:`
           M0 100
           L120 100
 
@@ -14,7 +14,7 @@ import{D as e,N as t,T as n,_ as r,b as i,m as a,t as o,x as s}from"./_plugin-vu
           L270 100
 
           L300 100
-        `,fill:`none`,stroke:`#9286ab`,"stroke-width":`4`,"stroke-linejoin":`round`,"stroke-linecap":`round`}),a(`path`,{d:`
+        `,fill:`none`,stroke:`#9286ab`,"stroke-width":`4`,"stroke-linejoin":`round`,"stroke-linecap":`round`}),r(`path`,{d:`
           M270 215
           C270 200 250 195 245 210
           C240 195 220 200 220 215
@@ -198,4 +198,4 @@ v: masquevil
 | 1个 | 全国任意城市经济舱往返机票，可折现 1000 元 |
 | 3个 | 648 元 |
 ~~~
-`,h={class:`page`},g={class:`container`},_={class:`aside-wrapper`},v=o(s({__name:`daer`,setup(n){c(e=>({v5047f980:s[`svg-heartbeat`]}));let o=p+m,s=t({});return(t,n)=>(e(),r(`main`,h,[a(`div`,g,[i(l,{content:o}),i(f,{urlRefs:s},null,8,[`urlRefs`])]),a(`div`,_,[i(u,{content:o})])]))}}),[[`__scopeId`,`data-v-4256c14c`]]);export{v as default};
+`,h={class:`page`},g={class:`container`},_={class:`aside-wrapper`},v=s(i({__name:`daer`,setup(n){a(e=>({v5047f980:s[`svg-heartbeat`]}));let i=p+m,s=c({});return(n,a)=>(t(),e(`main`,h,[r(`div`,g,[o(l,{content:i}),o(f,{urlRefs:s},null,8,[`urlRefs`])]),r(`div`,_,[o(u,{content:i})])]))}}),[[`__scopeId`,`data-v-4256c14c`]]);export{v as default};
