@@ -15,7 +15,9 @@ const doc = ref<string | null>(null);
 watch(
   () => route.params.role,
   async (newRole) => {
+    inited.value = true;
     if (!newRole) return;
+    inited.value = false;
     doc.value = await getDocByName(newRole);
     inited.value = true;
   },
