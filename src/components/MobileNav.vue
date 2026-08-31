@@ -2,15 +2,17 @@
 import type { NavTab } from '@/types/nav';
 import HamburgerButton from './HamburgerButton.vue';
 
+interface Emits {
+  (event: 'toggle'): void;
+  (event: 'close'): void;
+}
+
 defineProps<{
   tabs: NavTab[];
   isOpen: boolean;
 }>();
 
-const emit = defineEmits<{
-  toggle: [];
-  close: [];
-}>();
+const emit = defineEmits<Emits>();
 </script>
 
 <template>
@@ -39,7 +41,7 @@ const emit = defineEmits<{
           class="mobile-banner"
           @click="emit('close')"
         >
-          <span class="mobile-banner-text">灵感工坊</span>
+          <span class="mobile-banner-text">侠小然是谁？</span>
         </router-link>
         <nav class="menu-mobile">
           <div

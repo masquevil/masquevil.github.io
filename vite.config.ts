@@ -1,9 +1,10 @@
 import { fileURLToPath, URL } from 'node:url';
+import fs from 'node:fs';
 
 import { defineConfig } from 'vite';
+import type { Plugin } from 'vite';
 import VueRouter from 'vue-router/vite';
 import vue from '@vitejs/plugin-vue';
-import fs from 'fs';
 
 function getBase() {
   /**
@@ -43,13 +44,12 @@ export default defineConfig({
 });
 
 // 自定义插件：将 Markdown 文件作为字符串导入
-function markdownRawPlugin() {
+function markdownRawPlugin(): Plugin {
   return {
     name: 'markdown-raw',
-    transform(code, id) {
+    transform(_code, id) {
       if (id.endsWith('.md')) {
         const content = fs.readFileSync(id, 'utf-8');
-        // 将 Markdown 内容作为字符串导出
         return {
           code: `export default ${JSON.stringify(content)}`,
           map: null,

@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { onMounted, Reactive } from 'vue';
+import { onMounted } from 'vue';
 
-interface Props {
-  urlRefs: Reactive<Record<string, string>>;
+interface Emits {
+  (event: 'url-ready', url: string): void;
 }
 
-const props = withDefaults(defineProps<Props>(), {});
+const emit = defineEmits<Emits>();
 
 onMounted(() => {
   const svgHeartbeat = document.getElementById('svg-heartbeat');
   if (!svgHeartbeat) return;
-  props.urlRefs['svg-heartbeat'] =
-    `url("data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgHeartbeat.outerHTML)}")`;
+  const url = `url("data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgHeartbeat.outerHTML)}")`;
+  emit('url-ready', url);
 });
 </script>
 
