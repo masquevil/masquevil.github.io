@@ -1,4 +1,4 @@
-import{f as e,g as t,l as n,m as r,p as i,r as a,x as o}from"./index-JGxqskeW.js";import{t as s}from"./MarkdownRenderer-DkD6Dn8Q.js";import{t as c}from"./PageAside-eypJcU0o.js";var l=`# 侠小然的奇怪人生档案
+import{f as e,g as t,l as n,m as r,p as i,r as a,x as o}from"./index-C8fX_S21.js";import{t as s}from"./MarkdownRenderer-CO0Hz66k.js";import{t as c}from"./PageAside-SPeTb5Kw.js";var l=`# 侠小然的奇怪人生档案
 
 ## 退役程序员
 
